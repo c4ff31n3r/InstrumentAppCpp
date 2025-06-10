@@ -1,0 +1,210 @@
+\documentclass[14pt]{extarticle}
+\usepackage[a4paper, left=30mm, top=20mm, bottom=20mm, right=15mm]{geometry} 
+\usepackage[T1, T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{cmap}
+\usepackage{textcomp}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{fvextra}
+\usepackage{titlesec}
+\usepackage{longtable}
+\usepackage[labelsep=endash]{caption}
+\usepackage{tocloft}
+\usepackage{float}
+\usepackage{newunicodechar}
+\usepackage{multirow}
+\usepackage{pgf-umlcd}
+
+\sloppy
+\clubpenalty=10000
+\widowpenalty=10000
+
+\titleformat{\section}
+    {\normalfont\fontsize{16}{18}\bfseries}
+    {\thesection}
+    {0.25em}
+    {}
+    
+\titleformat{\subsection}
+    {\normalfont\fontsize{14}{16}\bfseries}
+    {\hspace{1em}\thesubsection}
+    {0.25em}
+    {}
+
+\begin{document}
+\newpage\thispagestyle{empty}
+\renewcommand{\figurename}{Рисунок}
+\begin{center}
+МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ \\
+РОССИЙСКОЙ ФЕДЕРАЦИИ \\[2ex]
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ
+УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+«ВЯТСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ» \\[2ex]
+Факультет автоматики и вычислительной техники \\[2ex]
+Кафедра электронных вычислительных машин \\
+\vfill
+\mbox{}\hfill
+\begin{tabular}{lp{5em}r}
+Дата сдачи на проверку: \\
+<<\rule[-5pt]{25pt}{0.5pt}>> \rule[-5pt]{70pt}{0.5pt} 2025 г. \\[2ex]
+Проверено: \\
+<<\rule[-5pt]{25pt}{0.5pt}>> \rule[-5pt]{70pt}{0.5pt} 2025 г.\\
+\end{tabular}
+
+\vfill
+\textbf{ООП в C++} \\
+Отчет по лабораторной работе № 1 \\
+по дисциплине \\
+<<Объектно-ориентированное программирование>> \\
+
+\vfill
+Выполнил студент гр. ИВТб-2303-05-00 \hfill \rule[-5pt]{0.22\linewidth}{1pt} /Крупица Р.А./ \\
+\hfil {\footnotesize (Подпись)}\\[2ex]    
+Руководитель \hfill \rule[-5pt]{0.22\linewidth}{1pt} /Шмакова Н.А./ \\
+\hfil {\footnotesize (Подпись)}\\[2ex]
+
+Работа защищена \hfill <<\rule[-5pt]{25pt}{0.5pt}>> \rule[-5pt]{70pt}{0.5pt} 2025 г.
+\vfill
+Киров 2025
+\end{center}
+\newpage
+
+\section{Цель работы}
+Закрепить навыки объектно-ориентированного программирования, научиться использовать наследование, полиморфизм и виртуальные функции на примере иерархии классов, описывающих музыкальные инструменты.
+
+\section{Задание}
+Разработать и реализовать на языке C++ консольное приложение, моделирующее взаимодействие с различными музыкальными инструментами. Предусмотреть базовый класс и производные классы (гитара, пианино), каждый из которых реализует специфичное поведение.
+
+\section{Описание реализации}
+В рамках лабораторной работы был создан базовый класс \texttt{MusicalInstrument}, включающий основные характеристики музыкальных инструментов — имя и количество струн/клавиш. В классе реализованы виртуальные методы для описания, настройки, игры и уникальной особенности инструмента.
+
+От базового класса унаследованы:
+\begin{itemize}
+    \item \textbf{Guitar} — содержит дополнительную информацию о типе гитары (акустическая или электрическая) и наличие звукоснимателя;
+    \item \textbf{Piano} — реализует свойства пианино или рояля, а также количество педалей;
+\end{itemize}
+
+В главной функции реализовано меню взаимодействия: добавление, удаление и выбор инструмента с дальнейшим вызовом методов.
+
+\newpage
+\section{Описание свойств и методов классов}
+
+\subsection*{Базовый класс \texttt{MusicalInstrument}}
+
+\textbf{Свойства:}
+
+\begin{itemize}
+\item \texttt{name}~--- имя инструмента;
+\item \texttt{stringsCount}~--- количество струн инструмента.
+\end{itemize}
+
+\textbf{Методы:}
+
+\begin{itemize}
+    \item \texttt{play()}~--- выводит сообщение о том, что инструмент играет.
+    \item \texttt{tune()}~--- имитирует настройку инструмента.
+    \item \texttt{describe()}~--- выводит общее описание инструмента (имя и количество струн/клавиш).
+    \item \texttt{specialFeature()}~--- демонстрирует уникальную особенность инструмента.
+    \item \texttt{setName(name)}~--- устанавливает новое имя инструмента.
+    \item \texttt{getName()}~--- возвращает текущее имя инструмента.
+    \item \texttt{setStringsCount(count)}~--- задаёт количество струн/клавиш.
+    \item \texttt{getStringsCount()}~--- возвращает текущее количество струн/клавиш.
+\end{itemize}
+
+\subsection*{Производный класс \texttt{Guitar}}
+
+\textbf{Свойства:}
+
+\begin{itemize}
+\item \texttt{guitarType}~--- тип гитары (акустическая/электрическая);
+\item \texttt{hasPickup}~--- наличие звукоснимателя.
+\end{itemize}
+
+\textbf{Методы:}
+
+\begin{itemize}
+    \item \texttt{strum()}~--- имитирует перебор струн гитары.
+    \item \texttt{changeStrings()}~--- показывает процесс замены струн на гитаре.
+    \item \texttt{describe()}~--- переопределяет базовый метод, добавляя информацию о типе гитары и наличии звукоснимателя.
+    \item \texttt{specialFeature()}~--- переопределяет базовый метод, уточняя, что гитара способна играть как аккорды, так и мелодии.
+\end{itemize}
+
+\subsection*{Производный класс \texttt{Piano}}
+
+\textbf{Свойства:}
+
+\begin{itemize}
+\item \texttt{pedalCount}~--- количество педалей;
+\item \texttt{isGrand}~--- является ли пианино роялем (у рояля струны и механика расположены горизонтально. Молоточки возвращаются под действием силы тяжести, что делает игру более чувствительной и быстрой). 
+\end{itemize}
+
+\textbf{Методы:}
+
+\begin{itemize}
+    \item \texttt{pressPedal()}~--- имитирует нажатие педали.
+    \item \texttt{cleanKeys()}~--- отображает процесс очистки клавиш.
+    \item \texttt{describe()}~--- переопределяет базовый метод, выводит тип (рояль или пианино), количество клавиш и педалей.
+    \item \texttt{specialFeature()}~--- переопределяет базовый метод, поясняет возможность одновременного исполнения мелодии и аккомпанемента.
+\end{itemize}
+
+\section{Диаграмма классов}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    % Базовый класс
+    \begin{class}[text width=6cm]{MusicalInstrument}{0,0}
+        \attribute{name: string}
+        \attribute{stringsCount: int}
+        \operation{play(): void}
+        \operation{tune(): void}
+        \operation{describe(): void}
+        \operation{specialFeature(): void}
+        \operation{setName(name: string): void}
+        \operation{getName(): string}
+        \operation{setStringsCount(count: int): void}
+        \operation{getStringsCount(): int}
+    \end{class}
+    
+    % Класс Guitar
+    \begin{class}[text width=6cm]{Guitar}{8,3}
+        \inherit{MusicalInstrument}
+        \attribute{guitarType: string}
+        \attribute{hasPickup: bool}
+        \operation{strum(): void}
+        \operation{changeStrings(): void}
+        \operation{describe(): void}
+        \operation{specialFeature(): void}
+    \end{class}
+    
+    % Класс Piano
+    \begin{class}[text width=6cm]{Piano}{8,-3}
+        \inherit{MusicalInstrument}
+        \attribute{pedalCount: int}
+        \attribute{isGrand: bool}
+        \operation{pressPedal(): void}
+        \operation{cleanKeys(): void}
+        \operation{describe(): void}
+        \operation{specialFeature(): void}
+    \end{class}
+\end{tikzpicture}
+\caption{Диаграмма классов}
+\end{figure}
+
+\section{Вывод}
+В результате выполнения лабораторной работы были достигнуты следующие результаты:
+\begin{itemize}
+    \item разработана иерархия классов с использованием принципов ООП;
+    \item освоены техники наследования, переопределения методов и полиморфизма;
+    \item реализована консольная система управления коллекцией музыкальных инструментов;
+    \item создана UML-диаграмма, отражающая архитектуру программы.
+\end{itemize}
+
+Полученные знания и навыки будут полезны при дальнейшем изучении системного проектирования и архитектуры программного обеспечения.
+
+\end{document}
